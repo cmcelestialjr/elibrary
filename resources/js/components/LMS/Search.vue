@@ -127,7 +127,7 @@
         getPageRange() {
             const currentPage = this.searchResults.current_page;
             const lastPage = this.searchResults.last_page;
-            const maxPagesToShow = 5;
+            const maxPagesToShow = 8;
 
             let startPage = currentPage - Math.floor(maxPagesToShow / 2);
             if (startPage < 1) {

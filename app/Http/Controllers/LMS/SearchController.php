@@ -39,14 +39,18 @@ class SearchController extends Controller
     {
         $term = $request->input('term');
        
-        if (empty($term)) {
-            $results = LMSBooksInfo::where('id','<=',10)->paginate(8);
-        } else {
-            $results = LMSBooksInfo::where('title', 'like', '%' . $term . '%')
+        // if (empty($term)) {
+        //     $results = LMSBooksInfo::where('id','<=',10)->paginate(8);
+        // } else {
+        //     $results = LMSBooksInfo::where('title', 'like', '%' . $term . '%')
+        //         ->orWhere('publisher', 'like', '%' . $term . '%')
+        //         ->orWhere('subject', 'like', '%' . $term . '%')
+        //         ->paginate(8);
+        // }
+        $results = LMSBooksInfo::where('title', 'like', '%' . $term . '%')
                 ->orWhere('publisher', 'like', '%' . $term . '%')
                 ->orWhere('subject', 'like', '%' . $term . '%')
                 ->paginate(8);
-        }
         $totalCount = $results->total();
         $totalCountDisplay = number_format($totalCount).' results';
         if($totalCount<=1){
